@@ -9,7 +9,6 @@ from gtts import gTTS
 
 from app.ui.random_button import RandomButton
 
-
 class SpeakButton:
     def __init__(self, random_button: RandomButton):
         self.random_button = random_button
@@ -29,7 +28,6 @@ class SpeakButton:
     def _on_click(self):
         speak(self.random_button.words[self.random_button.index].text)
 
-
 def speak(text: str, lang: str = "ja"):
     def _play():
         try:
@@ -43,12 +41,12 @@ def speak(text: str, lang: str = "ja"):
             pygame.mixer.music.load(tmp_path)
             pygame.mixer.music.play()
 
-            clock = pygame.time.Clock()
             while pygame.mixer.music.get_busy():
-                clock.tick(10)
+                pygame.time.Clock().tick(10)
 
             pygame.mixer.music.stop()
-            time.sleep(0.1)
+            pygame.mixer.music.unload()
+            time.sleep(0.1)  # Небольшая задержка для надёжности
             os.remove(tmp_path)
 
         except Exception as e:
