@@ -30,7 +30,7 @@ def start_window(words: List[WordEntry]):
     window = get_window()
     layout = QVBoxLayout(window)
     labels = _create_labels()
-    random_button = RandomButton(words, labels)
+    random_button = RandomButton(words, window, labels)
     sound_button = SpeakButton(random_button)
     
     _add_widgets(layout, labels)

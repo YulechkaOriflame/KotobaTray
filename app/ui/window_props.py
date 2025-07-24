@@ -9,6 +9,11 @@ class _DraggableWindow(QWidget):
         super().__init__()
         self._mouse_pos = None
         self.setWindowOpacity(0.7)
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #fdf6e3;
+            }
+        """)
         self.setWindowFlags(
             Qt.WindowStaysOnTopHint |
             Qt.FramelessWindowHint
