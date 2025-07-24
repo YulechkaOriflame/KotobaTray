@@ -1,6 +1,7 @@
 import os
 import tempfile
 import threading
+import time
 
 import pygame
 from PySide6.QtWidgets import QPushButton
@@ -32,25 +33,22 @@ class SpeakButton:
 def speak(text: str, lang: str = "ja"):
     def _play():
         try:
-            # Создаём временный файл
             with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
                 tmp_path = tmp_file.name
                 gTTS(text=text, lang=lang).save(tmp_path)
 
-            # Инициализация микшера (если ещё не инициализирован)
             if not pygame.mixer.get_init():
                 pygame.mixer.init()
 
-            # Загрузка и воспроизведение
             pygame.mixer.music.load(tmp_path)
             pygame.mixer.music.play()
 
-            # Ожидаем завершения воспроизведения
             clock = pygame.time.Clock()
             while pygame.mixer.music.get_busy():
                 clock.tick(10)
 
-            # Удаляем временный файл
+            pygame.mixer.music.stop()
+            time.sleep(0.1)
             os.remove(tmp_path)
 
         except Exception as e:
