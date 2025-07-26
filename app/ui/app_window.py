@@ -35,11 +35,10 @@ def start_window(words: List[WordEntry]):
     
     _add_widgets(layout, labels)
     button_row = QHBoxLayout()
-    button_row.addWidget(random_button.button)
-    button_row.addWidget(sound_button.button)
+    for btn in [random_button.button, sound_button.button]:
+        button_row.addWidget(btn)
     layout.addLayout(button_row)
 
-    random_button.update_labels()
     window.show()
     threading.Thread(target=_listen_for_exit, daemon=True).start()
     app.exec()

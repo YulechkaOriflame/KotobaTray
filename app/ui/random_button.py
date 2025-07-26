@@ -2,7 +2,7 @@ import platform
 
 from PySide6.QtWidgets import QPushButton, QLabel, QWidget
 
-from app.utils import get_random_index
+from app.utils import RandomOrder
 from entity.word_entry import WordEntry
 
 
@@ -14,15 +14,15 @@ class RandomButton:
             labels: list[QLabel]
     ):
         self.window = window
-        self.index = 0
         self.button = QPushButton("Другое слово")
+        self.index = 0
+        self.order = RandomOrder(len(words))
         self.words = words
         self.labels = labels
         self.button.clicked.connect(self._on_random)
 
     def _on_random(self):
-        new_index = get_random_index(self.index, self.words)
-        self.index = new_index
+        self.index = self.order.next()
         self.update_labels()
 
     def _resize_window(self):
