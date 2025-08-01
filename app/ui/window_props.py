@@ -60,4 +60,4 @@ def get_label(size: int) -> QLabel:
 
 def _get_jp_font() -> str:
     path = Path(__file__).parents[2] / "entity" / "NotoSerifJP-VariableFont_wght.ttf"
-    return str(path).replace('/', os.sep)
+    return str(path.resolve()).replace('\\', '/')
