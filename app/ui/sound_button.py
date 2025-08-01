@@ -9,6 +9,7 @@ from gtts import gTTS
 
 from app.ui.random_button import RandomButton
 
+
 class SpeakButton:
     def __init__(self, random_button: RandomButton):
         self.random_button = random_button
@@ -27,6 +28,7 @@ class SpeakButton:
 
     def _on_click(self):
         speak(self.random_button.words[self.random_button.index].text)
+
 
 def speak(text: str, lang: str = "ja"):
     def _play():

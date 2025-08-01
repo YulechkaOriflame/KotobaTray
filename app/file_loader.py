@@ -1,6 +1,6 @@
-import sys
 import argparse
 import csv
+import sys
 from typing import List
 
 from entity.word_entry import WordEntry

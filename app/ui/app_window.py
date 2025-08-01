@@ -5,18 +5,24 @@ from typing import List
 from PySide6.QtWidgets import QHBoxLayout, QApplication, QVBoxLayout, QLabel
 
 from app.ui.random_button import RandomButton
-from app.ui.sound_button import speak, SpeakButton
-from app.ui.window_props import get_window, get_label
+from app.ui.sound_button import SpeakButton
+from app.ui.window_props import get_window, get_label, get_jp_label
 from entity.word_entry import WordEntry
 
 app = QApplication(sys.argv)
 
+
 def _create_labels() -> list[QLabel]:
-    return [get_label(size) for size in [40, 28, 16, 16]]
+    return (
+            [get_jp_label(size) for size in [40, 28]] +
+            [get_label(size) for size in [16, 16]]
+    )
+
 
 def _add_widgets(layout: QVBoxLayout, widgets: list):
     for w in widgets:
         layout.addWidget(w)
+
 
 def _listen_for_exit():
     print("q + Enter для завершения")
@@ -32,7 +38,7 @@ def start_window(words: List[WordEntry]):
     labels = _create_labels()
     random_button = RandomButton(words, window, labels)
     sound_button = SpeakButton(random_button)
-    
+
     _add_widgets(layout, labels)
     button_row = QHBoxLayout()
     for btn in [random_button.button, sound_button.button]:

@@ -1,6 +1,8 @@
-from PySide6.QtGui import QFont
-from PySide6.QtWidgets import QWidget, QLabel
+from pathlib import Path
+
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QFont, QFontDatabase
+from PySide6.QtWidgets import QWidget, QLabel
 
 
 # noinspection PyUnresolvedReferences
@@ -32,8 +34,20 @@ class _DraggableWindow(QWidget):
     def mouseReleaseEvent(self, event):
         self._mouse_pos = None
 
+
 def get_window() -> QWidget:
     return _DraggableWindow()
+
+
+# noinspection PyUnresolvedReferences
+def get_jp_label(size: int) -> QLabel:
+    font_id = QFontDatabase.addApplicationFont(_get_jp_font())
+    family = QFontDatabase.applicationFontFamilies(font_id)[0]
+    label = QLabel()
+    label.setFont(QFont(family, size))
+    label.setAlignment(Qt.AlignCenter)
+    return label
+
 
 # noinspection PyUnresolvedReferences
 def get_label(size: int) -> QLabel:
@@ -41,3 +55,7 @@ def get_label(size: int) -> QLabel:
     label.setFont(QFont("Comic Sans MS", size))
     label.setAlignment(Qt.AlignCenter)
     return label
+
+
+def _get_jp_font() -> str:
+    return str(Path(__file__).parents[2] / "entity" / "NotoSerifJP-VariableFont_wght.ttf")

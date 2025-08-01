@@ -1,5 +1,3 @@
-import platform
-
 from PySide6.QtWidgets import QPushButton, QLabel, QWidget
 
 from app.utils import RandomOrder
