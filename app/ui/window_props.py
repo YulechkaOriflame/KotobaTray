@@ -1,9 +1,8 @@
-from pathlib import Path
+import os
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont, QFontDatabase
 from PySide6.QtWidgets import QWidget, QLabel
-import os
 
 
 # noinspection PyUnresolvedReferences
@@ -59,5 +58,7 @@ def get_label(size: int) -> QLabel:
 
 
 def _get_jp_font() -> str:
-    path = Path(__file__).parents[2] / "entity" / "NotoSerifJP-VariableFont_wght.ttf"
-    return str(path.resolve()).replace('\\', '/')
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(os.path.dirname(base_dir))
+    font_path = os.path.join(parent_dir, "entity", "NotoSerifJP-VariableFont_wght.ttf")
+    return font_path.replace('\\', '/')
