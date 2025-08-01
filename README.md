@@ -13,12 +13,6 @@
 ### Из кода
 > python bu.py -f words.csv (words.csv - заменить на ваш путь к файлу)
 
-### Так же можно собрать в 1 файл
-> python -m zipapp Word-sticker -o sticker.pyz -m "bu:main"
-
-### И запускать как
-> python sticker.pyz -f Word-sticker/words.csv (Word-sticker/words.csv - путь до csv)
-
 Выход
 >q + Enter в терминал
 
@@ -41,12 +35,6 @@ You can use your own columns, just make sure it matches the expected format
 
 ### From source:
 > python bu.py -f words.csv
-
-### Bundled into a single file:
-> python -m zipapp Word-sticker -o sticker.pyz -m "bu:main"
-
-### Then run:
-> python sticker.pyz -f Word-sticker/words.csv
 
 ❌ Exit
 Type q + Enter in the terminal.
