@@ -1,5 +1,5 @@
 import os
-import sys
+from pathlib import Path
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont, QFontDatabase
@@ -59,10 +59,5 @@ def get_label(size: int) -> QLabel:
 
 
 def _get_jp_font() -> str:
-    if getattr(sys, 'frozen', False):
-        base_path = sys._MEIPASS
-    else:
-        base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-
-    font_path = os.path.join(base_path, "entity", "NotoSerifJP-VariableFont_wght.ttf")
-    return font_path.replace('\\', '/')
+    path = Path(__file__).parents[2] / "entity" / "NotoSerifJP-VariableFont_wght.ttf"
+    return str(path).replace('/', os.sep)
