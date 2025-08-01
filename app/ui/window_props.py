@@ -58,6 +58,7 @@ def get_label(size: int) -> QLabel:
 
 
 def _get_jp_font() -> str:
-    base_dir = Path(__file__).parents[2]
-    font_path = base_dir.joinpath("entity").joinpath("NotoSerifJP-VariableFont_wght.ttf")
-    return str(font_path.resolve())
+    path = (Path(__file__).parents[2] / "entity" / "NotoSerifJP-VariableFont_wght.ttf").resolve()
+    if not path.exists():
+        raise FileNotFoundError(f"Font file not found at {path}")
+    return str(path)
