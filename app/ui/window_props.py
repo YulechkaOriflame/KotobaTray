@@ -3,6 +3,7 @@ from pathlib import Path
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QFont, QFontDatabase
 from PySide6.QtWidgets import QWidget, QLabel
+import os
 
 
 # noinspection PyUnresolvedReferences
@@ -58,7 +59,5 @@ def get_label(size: int) -> QLabel:
 
 
 def _get_jp_font() -> str:
-    path = (Path(__file__).parents[2] / "entity" / "NotoSerifJP-VariableFont_wght.ttf").resolve()
-    if not path.exists():
-        raise FileNotFoundError(f"Font file not found at {path}")
-    return str(path)
+    path = Path(__file__).parents[2] / "entity" / "NotoSerifJP-VariableFont_wght.ttf"
+    return str(path).replace('/', os.sep)
