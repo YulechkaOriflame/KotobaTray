@@ -1,41 +1,62 @@
-# word-sticker (jp)
+# KotobaTray
 
-Небольшая утилита, которая отображает слово в маленьком полупрозрачном окне, всегда поверх других окон.  
-Позволяет переключать слова и озвучивать их (через `gTTS` и `pygame`).
-> ⚠️ Программа не содержит словаря, его нужно подгружать отдельно при запуске.
+A small desktop utility built with **PySide6** that helps with Japanese learning:  
+- Displaying stickers with custom vocabulary.  
+- Translating text automatically from the clipboard.  
+- On-the-fly translations with copy-back support.  
 
-## 📄 Формат CSV-файла
+It lives in the system tray, and you can toggle windows on/off at any time.
 
-Пример `words.csv`:
-- 日本,にほん,nihon,Япония
+---
 
-# Запуск
-### Из кода
-> python bu.py -f words.csv (words.csv - заменить на ваш путь к файлу)
+## 🔧 Installation
 
-Выход
->q + Enter в терминал
+You don’t need to set up Python manually — just run the provided installer script.  
+It will:
+- Create a virtual environment in `.venv`
+- Install dependencies from `requirements.txt`
+- Download the **UniDic** dictionary for Japanese parsing
 
-Оффтоп коммент:
-Дареному коду в зубы не смотрят :)
+```bash
+python install.py
+```
 
-# Word Sticker
+After the script finishes, everything is ready to use.
 
-A small utility that shows a floating, always-on-top window with a word sticker.  
-You can switch between words and have them spoken out loud (using `gTTS` and `pygame`).
-> ⚠️ The program does **not** include any built-in dictionary — you must load your own CSV file at startup.
+---
 
-## 📄 CSV Format
+## 🚀 Usage
 
-Example `words.csv`:
-- 日本,にほん,nihon,Japan
+When the app is running, a tray icon will appear.  
+From the tray, you can enable or disable any of the three windows:
 
-You can use your own columns, just make sure it matches the expected format
-## 🚀 Running
+```python
+"Sticker": StickerWindow,
+"Translate from": TranslationWindow,
+"Translate to": TranslateToWindow,
+```
 
-### From source:
-> python bu.py -f words.csv
+### Sticker
+Displays words from your custom CSV file.  
+Useful for quick recall / learning.  
 
-❌ Exit
-Type q + Enter in the terminal.
+### Translate from
+Monitors the clipboard and automatically shows translations of copied text.  
 
+### Translate to
+Lets you type text and see the translation in real time.  
+Clicking on the translation copies it back into the clipboard.  
+
+---
+
+## 📦 Tech Stack
+- PySide6 — UI framework  
+- unidic-lite — dictionary for Japanese parsing  
+- Custom helpers for clipboard monitoring, translation, and text formatting  
+
+---
+
+# 📝 Notes
+- Works on Windows, macOS, and Linux (where PySide6 is supported).
+- By default, translations are performed **Russian ↔ Japanese** using Google Translate.  
+- You can change the source/target languages in `app/utils/translate/translate_and_format.py`.

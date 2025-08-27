@@ -1,13 +1,6 @@
-import os
-import sys
-from pathlib import Path
-from typing import List
-
 import cutlet
 import fugashi
 from deep_translator import GoogleTranslator
-from PySide6.QtWidgets import QLabel
-
 tagger = fugashi.Tagger()
 
 def get_underlined_text(text: str) -> str:
