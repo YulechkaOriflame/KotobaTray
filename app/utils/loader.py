@@ -19,6 +19,6 @@ def load_words(path: str) -> List[WordEntry]:
         )
         return []
 
-def get_tray_icon() -> str:
-    path = Path(__file__).parents[2] / "entity" / "tray-icon.png"
+def get_file(file_name: str) -> str:
+    path = Path(__file__).parents[2] / file_name
     return str(path).replace('/', os.sep)

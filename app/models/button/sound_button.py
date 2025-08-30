@@ -2,6 +2,7 @@ import os
 import tempfile
 import threading
 import time
+from typing import Optional
 
 import pygame
 from gtts import gTTS
@@ -12,15 +13,17 @@ from app.utils.catch_error_from_thread import error_call
 class SoundButton(QPushButton):
     def __init__(self):
         super().__init__("🔊")
-        self.text = ""
+        self._text = ""
+        self._lang = "ja"
         self.setStyleSheet(self._style())
         self.clicked.connect(self._on_click)
 
-    def set_text(self, text: str):
-        self.text = text
+    def set_text(self, text: str, language: Optional[str] = "ja"):
+        self._text = text
+        self._lang = language
 
     def _on_click(self):
-        speak(self.text)
+        speak(self._text, self._lang)
 
     @staticmethod
     def _style() -> str:
@@ -35,7 +38,7 @@ class SoundButton(QPushButton):
             }
         """
 
-def speak(text: str, lang: str = "ja"):
+def speak(text: str, lang: str):
     threading.Thread(target=_play_worker, args=(text, lang), daemon=True).start()
 
 def _play_worker(text: str, lang: str):

@@ -9,7 +9,8 @@ from app.models.window.base_window import BaseWindow
 from app.utils.label_builder import get_jp_label, get_label
 
 class StickerWindow(BaseWindow):
-    def setup_window(self):
+    def __init__(self):
+        super().__init__()
         self.setLayout(self._build_layout())
 
     def _build_layout(self) -> QVBoxLayout:

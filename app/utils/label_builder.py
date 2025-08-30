@@ -5,6 +5,8 @@ from typing import List
 from PySide6.QtGui import QFont, QFontDatabase, Qt
 from PySide6.QtWidgets import QLabel
 
+from app.utils.loader import get_file
+
 # noinspection PyUnresolvedReferences
 def get_jp_label(size: int) -> QLabel:
     font_id = QFontDatabase.addApplicationFont(get_jp_font())
@@ -27,5 +29,5 @@ def adjust_size(labels: List[QLabel]):
         lbl.setWordWrap(True)
 
 def get_jp_font() -> str:
-    path = Path(__file__).parents[2] / "entity" / "NotoSerifJP-VariableFont_wght.ttf"
-    return str(path).replace('/', os.sep)
+    return get_file("NotoSerifJP-VariableFont_wght.ttf")
+

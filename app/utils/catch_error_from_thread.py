@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QMessageBox
 class GuiHelper(QObject):
     error_signal = Signal(str)
     """Catch error from threads and show it in main"""
+
     def __init__(self):
         super().__init__()
         self.error_signal.connect(self._show_error)

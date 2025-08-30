@@ -1,14 +1,16 @@
 from PySide6.QtCore import QObject, QTimer, Signal
-from app.utils.translate.translator_thread import TranslatorThread
 
+from app.models.window.options_window import Options
+from app.manager.translator_thread import TranslatorThread
 
 class TranslatorManager(QObject):
     translated = Signal(str)
 
-    def __init__(self, delay=1000):
+    def __init__(self, options: Options, delay=1000):
         super().__init__()
         self._delay = delay
         self._timer = QTimer(self)
+        self._options = options
         self._timer.setSingleShot(True)
         self._timer.timeout.connect(self._start_translation)
 
@@ -28,7 +30,7 @@ class TranslatorManager(QObject):
         if self._current_thread and self._current_thread.isRunning():
             return
 
-        thread = TranslatorThread(text)
+        thread = TranslatorThread(text, self._options)
         thread.translated.connect(self.translated.emit)
         thread.finished.connect(self._clear_thread)
 

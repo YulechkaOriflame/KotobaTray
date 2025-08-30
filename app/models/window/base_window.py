@@ -10,11 +10,6 @@ class BaseWindow(QWidget):
         self.setWindowOpacity(0.7)
         self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
         self.setStyleSheet(self._style())
-        self.setup_window()
-
-    @abstractmethod
-    def setup_window(self):
-        pass
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
@@ -34,6 +29,7 @@ class BaseWindow(QWidget):
         return """
             QWidget {
                 background-color: #fdf6e3;
+                border-radius: 12px;
             }
             QLineEdit, QTextEdit {
                 font-size: 16px;
