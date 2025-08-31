@@ -1,0 +1,41 @@
+name: Build KotobaTray EXE
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.13
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller unidic
+
+      - name: Download UniDic
+        run: python -m unidic download --output unidic
+
+      - name: Build EXE
+        run: python build.py
+
+      - name: Archive build
+        run: |
+          powershell Compress-Archive -Path dist/KotobaTray/* -DestinationPath KotobaTray-windows.zip
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: KotobaTray-windows
+          path: KotobaTray-windows.zip
