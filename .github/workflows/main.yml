@@ -25,7 +25,7 @@ jobs:
           pip install pyinstaller unidic
 
       - name: Download UniDic
-        run: python -m unidic download --output unidic
+        run: python -m unidic download
 
       - name: Build EXE
         run: python build.py
