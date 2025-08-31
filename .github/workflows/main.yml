@@ -28,7 +28,7 @@ jobs:
         run: python -m unidic download
 
       - name: Copy UniDic to project folder
-        run: cp -r .venv/lib/python3.13/site-packages/unidic/dicdir unidic
+        run: Copy-Item -Recurse .venv\Lib\site-packages\unidic\dicdir unidic
 
       - name: Build EXE
         run: python build.py
