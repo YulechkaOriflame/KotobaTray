@@ -28,7 +28,8 @@ jobs:
         run: python -m unidic download
 
       - name: Copy UniDic to project folder
-        run: Copy-Item -Recurse .venv\Lib\site-packages\unidic\dicdir unidic
+        run: |
+          python -c "import unidic, shutil; shutil.copytree(unidic.DICDIR, 'unidic')"
 
       - name: Build EXE
         run: python build.py
