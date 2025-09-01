@@ -8,7 +8,6 @@ fugashi==1.5.1
 gTTS==2.5.4
 idna==3.10
 jaconv==0.4.0
-mojimoji==0.0.13
 plac==1.4.5
 playsound==1.2.2
 pygame==2.6.1
