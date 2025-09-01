@@ -11,11 +11,14 @@ if not os.path.exists(venv_dir):
     run(f"{sys.executable} -m venv {venv_dir}")
 
 if os.name == "nt":
-    # Windows
     python_bin = os.path.join(venv_dir, "Scripts", "python.exe")
     pip_bin = os.path.join(venv_dir, "Scripts", "pip.exe")
+    try:
+        run("cl")
+    except subprocess.CalledProcessError:
+        print("Microsoft C++ Build Tools not found. Installing...")
+        run("winget install Microsoft.VisualCpp.BuildTools --silent")
 else:
-    # macOS / Linux
     python_bin = os.path.join(venv_dir, "bin", "python")
     pip_bin = os.path.join(venv_dir, "bin", "pip")
 
