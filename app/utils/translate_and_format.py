@@ -1,21 +1,8 @@
-import os
-import sys
-from pathlib import Path
-
 import cutlet
 import fugashi
 from deep_translator import GoogleTranslator
-from unidic import unidic
 
-def make_tagger():
-    if getattr(sys, "frozen", False):
-        base_path = Path(sys._MEIPASS) / "_internal"
-        dic_path = base_path / "unidic"
-    else:
-        dic_path = unidic.DICDIR
-
-    return fugashi.Tagger(f'-d "{dic_path}"')
-tagger = make_tagger()
+tagger = fugashi.Tagger()
 
 def get_underlined_text(text: str) -> str:
     words = [word.surface for word in tagger(text)]
