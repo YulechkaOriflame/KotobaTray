@@ -27,10 +27,19 @@ jobs:
       - name: Download UniDic
         run: python -m unidic download
 
+      - name: Copy UniDic to project folder
+        run: |
+          python -c "import unidic, shutil; shutil.copytree(unidic.DICDIR, 'unidic')"
+
       - name: Build EXE
         run: python build.py
 
-      - name: Zip artifact
+      - name: Move UniDic next to build
+        run: |
+          mkdir dist/KotobaTray/unidic
+          xcopy /E /I /Y unidic dist\KotobaTray\unidic
+
+      - name: Archive build
         run: |
           powershell Compress-Archive -Path dist/KotobaTray/* -DestinationPath KotobaTray-windows.zip
 
