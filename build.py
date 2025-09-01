@@ -1,4 +1,9 @@
 import PyInstaller.__main__
+import unidic
+
+dicdir = unidic.DICDIR
+dst = "unidic_data"
+sep = ";"
 
 PyInstaller.__main__.run([
     "main.py",
@@ -7,6 +12,6 @@ PyInstaller.__main__.run([
     "--windowed",
     "--noconfirm",
     "--icon=tray-icon.ico",
-    "--add-data=NotoSerifJP-VariableFont_wght.ttf;fonts",
-    "--add-data=unidic;unidic",
+    f"--add-data=NotoSerifJP-VariableFont_wght.ttf{sep}fonts",
+    f"--add-data={dicdir}{sep}{dst}",
 ])

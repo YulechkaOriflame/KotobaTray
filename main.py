@@ -3,12 +3,16 @@ import sys
 from pathlib import Path
 
 def init_unidic():
-    if hasattr(sys, "_MEIPASS"):  # exe
-        base = Path(sys._MEIPASS)
-    else:  # dev
-        base = Path(__file__).resolve().parent
-    dic_path = base / "unidic"
-    os.environ["UNIDICDIR"] = str(dic_path)
+    base = Path(sys._MEIPASS) if hasattr(sys, "_MEIPASS") else Path(__file__).resolve().parent
+    bundled = base / "unidic_data"
+    if bundled.exists():
+        os.environ["UNIDICDIR"] = str(bundled)
+    else:
+        try:
+            import unidic
+            os.environ.setdefault("UNIDICDIR", unidic.DICDIR)
+        except Exception:
+            pass
 
 init_unidic()
 
