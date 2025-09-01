@@ -1,5 +1,6 @@
 import os
 import sys
+from pathlib import Path
 
 import cutlet
 import fugashi
@@ -8,8 +9,8 @@ from unidic import unidic
 
 def make_tagger():
     if getattr(sys, "frozen", False):
-        base_path = os.path.dirname(sys.executable)
-        dic_path = os.path.join(base_path, "unidic")
+        base_path = Path(sys._MEIPASS) / "_internal"
+        dic_path = base_path / "unidic"
     else:
         dic_path = unidic.DICDIR
 
