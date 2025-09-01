@@ -38,10 +38,11 @@ jobs:
       - name: Build EXE
         run: python build.py
 
-      - name: Move UniDic next to build
+      - name: Move resources to build
         run: |
           mkdir dist/KotobaTray/unidic
           xcopy /E /I /Y unidic dist\KotobaTray\unidic
+          copy mecabrc dist\KotobaTray\
 
       - name: Archive build
         run: |
