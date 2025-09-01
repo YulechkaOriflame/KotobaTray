@@ -24,10 +24,11 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller unidic fugashi
 
-      - name: Download UniDic to local folder
+      - name: Download UniDic
         run: |
-          mkdir unidic
-          python -m unidic download --download-dir unidic
+          python -m unidic download
+          python -c "import shutil, unidic; shutil.copytree(unidic.__path__[0], 'unidic')"
+          python -c "import shutil, unidic, os; shutil.rmtree(unidic.__path__[0])"
 
       - name: Build EXE
         run: python build.py
