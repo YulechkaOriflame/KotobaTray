@@ -25,17 +25,10 @@ jobs:
           pip install pyinstaller unidic fugashi
 
       - name: Download UniDic
-        run: |
-          python -m unidic download
-          python -c "import shutil, unidic; shutil.copytree(unidic.__path__[0], 'unidic')"
-          python -c "import shutil, unidic, os; shutil.rmtree(unidic.__path__[0])"
+        run: python -m unidic download
 
       - name: Build EXE
         run: python build.py
-
-      - name: Archive build
-        run: |
-          powershell Compress-Archive -Path dist/KotobaTray/* -DestinationPath KotobaTray-windows.zip
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
