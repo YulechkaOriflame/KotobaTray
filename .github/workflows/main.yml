@@ -24,16 +24,11 @@ jobs:
           pip install -r requirements.txt
           pip install pyinstaller unidic fugashi
 
+      - name: Download UniDic
+        run: python -m unidic download -d unidic
+
       - name: Build EXE
         run: python build.py
-
-      - name: Create portable version script
-        run: |
-          echo "@echo off" > dist\KotobaTray\install_unidic.bat
-          echo "echo Installing UniDic dictionary..." >> dist\KotobaTray\install_unidic.bat
-          echo "python -m unidic download" >> dist\KotobaTray\install_unidic.bat
-          echo "echo Done! Press any key to continue..." >> dist\KotobaTray\install_unidic.bat
-          echo "pause" >> dist\KotobaTray\install_unidic.bat
 
       - name: Archive build
         run: |
