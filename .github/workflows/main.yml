@@ -22,27 +22,18 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pyinstaller unidic
-
-      - name: Download UniDic
-        run: python -m unidic download
-
-      - name: Copy UniDic to project folder
-        run: |
-          python -c "import unidic, shutil; shutil.copytree(unidic.DICDIR, 'unidic')"
-
-      - name: Create mecabrc file
-        run: |
-          echo "dicdir = ./unidic" > mecabrc
+          pip install pyinstaller unidic fugashi
 
       - name: Build EXE
         run: python build.py
 
-      - name: Move resources to build
+      - name: Create portable version script
         run: |
-          mkdir dist/KotobaTray/unidic
-          xcopy /E /I /Y unidic dist\KotobaTray\unidic
-          copy mecabrc dist\KotobaTray\
+          echo "@echo off" > dist\KotobaTray\install_unidic.bat
+          echo "echo Installing UniDic dictionary..." >> dist\KotobaTray\install_unidic.bat
+          echo "python -m unidic download" >> dist\KotobaTray\install_unidic.bat
+          echo "echo Done! Press any key to continue..." >> dist\KotobaTray\install_unidic.bat
+          echo "pause" >> dist\KotobaTray\install_unidic.bat
 
       - name: Archive build
         run: |
