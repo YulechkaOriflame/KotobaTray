@@ -11,7 +11,7 @@ def get_dicdir():
         return os.path.join(sys._MEIPASS, "unidic_lite", "dicdir")
     return unidic_lite.DICDIR
 
-tagger = fugashi.Tagger(f"-d {get_dicdir()}")
+tagger = fugashi.Tagger(f"-r {os.devnull} -d {get_dicdir()}")
 
 def get_underlined_text(text: str) -> str:
     words = [word.surface for word in tagger(text)]
