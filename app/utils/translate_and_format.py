@@ -13,11 +13,7 @@ def get_dicdir():
         path = unidic_lite.DICDIR
     return os.path.abspath(path)
 
-dicdir = get_dicdir()
-print("Using dicdir:", dicdir)
-print("dicrc exists:", os.path.exists(os.path.join(dicdir, "dicrc")))
-
-tagger = fugashi.Tagger(f'-r {os.devnull} -d "{dicdir}"')
+tagger = fugashi.Tagger(f'-r {os.devnull} -d "{get_dicdir()}"')
 
 def get_underlined_text(text: str) -> str:
     words = [word.surface for word in tagger(text)]

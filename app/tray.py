@@ -27,6 +27,7 @@ class Tray(QSystemTrayIcon):
     def _configure_icon(self):
         self.setIcon(QIcon(get_file("tray-icon.ico")))
         self.setToolTip("Kotoba")
+        self.setVisible(True)
 
     def _configure_menu(self):
         self.menu.addAction(OptionsOption(self.options, self))
