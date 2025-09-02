@@ -8,10 +8,16 @@ from deep_translator import GoogleTranslator
 
 def get_dicdir():
     if hasattr(sys, "_MEIPASS"):
-        return os.path.join(sys._MEIPASS, "unidic_lite", "dicdir")
-    return unidic_lite.DICDIR
+        path = os.path.join(sys._MEIPASS, "unidic_lite", "dicdir")
+    else:
+        path = unidic_lite.DICDIR
+    return os.path.abspath(path)
 
-tagger = fugashi.Tagger(f"-r {os.devnull} -d {get_dicdir()}")
+dicdir = get_dicdir()
+print("Using dicdir:", dicdir)
+print("dicrc exists:", os.path.exists(os.path.join(dicdir, "dicrc")))
+
+tagger = fugashi.Tagger(f'-r {os.devnull} -d "{dicdir}"')
 
 def get_underlined_text(text: str) -> str:
     words = [word.surface for word in tagger(text)]
