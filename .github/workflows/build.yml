@@ -30,4 +30,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: KotobaTray-windows
-          path: dist/KotobaTray
+          path: dist/KotobaTray.exe
