@@ -18,8 +18,22 @@ It will:
 - Install dependencies from `requirements.txt`
 - Download the **UniDic** dictionary for Japanese parsing
 
-```bash
+```
 python install.py
+```
+Addition command for windows powershell
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser 
+```
+Activate
+```
+Windows PS - .\venv\Scripts\Activate.ps1
+MacOS/Linux - source .venv/bin/activate
+```
+Start
+```
+python main.py        # run with console
+pythonw main.py       # run without console (Windows only)
 ```
 
 After the script finishes, everything is ready to use.
