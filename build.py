@@ -10,5 +10,5 @@ PyInstaller.__main__.run([
     "--icon=tray-icon.ico",
     "--add-data=NotoSerifJP-VariableFont_wght.ttf;.",
     "--add-data=tray-icon.ico;.",
-    f"--add-data={unidic_lite.DICDIR};unidic_lite/dicdir",
+    f"--add-data={unidic_lite.DICDIR};unidic_lite/dicdir", # it should be found by mecab in fugashi
 ])

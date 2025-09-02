@@ -6,12 +6,11 @@ import jaconv
 import unidic_lite
 from deep_translator import GoogleTranslator
 
-def get_dicdir():
+# noinspection PyProtectedMember
+def get_dicdir(): # Needed for .exe build
     if hasattr(sys, "_MEIPASS"):
-        path = os.path.join(sys._MEIPASS, "unidic_lite", "dicdir")
-    else:
-        path = unidic_lite.DICDIR
-    return os.path.abspath(path)
+        return os.path.join(sys._MEIPASS, "unidic_lite", "dicdir")
+    return os.path.abspath(unidic_lite.DICDIR)
 
 tagger = fugashi.Tagger(f'-r {os.devnull} -d "{get_dicdir()}"')
 
