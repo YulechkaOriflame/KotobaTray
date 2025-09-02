@@ -1,8 +1,17 @@
+import os
+import sys
+
 import fugashi
 import jaconv
+import unidic_lite
 from deep_translator import GoogleTranslator
 
-tagger = fugashi.Tagger()
+def get_dicdir():
+    if hasattr(sys, "_MEIPASS"):
+        return os.path.join(sys._MEIPASS, "unidic_lite", "dicdir")
+    return unidic_lite.DICDIR
+
+tagger = fugashi.Tagger(f"-d {get_dicdir()}")
 
 def get_underlined_text(text: str) -> str:
     words = [word.surface for word in tagger(text)]
