@@ -1,0 +1,11 @@
+import PyInstaller.__main__
+
+PyInstaller.__main__.run([
+    "main.py",
+    "--name=KotobaTray",
+    "--onedir",
+    "--windowed",
+    "--noconfirm",
+    "--icon=tray-icon.ico",
+    "--add-data=NotoSerifJP-VariableFont_wght.ttf;fonts",
+])
