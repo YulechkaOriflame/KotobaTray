@@ -9,5 +9,6 @@ PyInstaller.__main__.run([
     "--noconfirm",
     "--icon=tray-icon.ico",
     "--add-data=NotoSerifJP-VariableFont_wght.ttf;.",
+    "--add-data=tray-icon.ico;.",
     f"--add-data={unidic_lite.DICDIR};unidic_lite/dicdir",
 ])
