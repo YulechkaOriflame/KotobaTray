@@ -3,7 +3,7 @@ import PyInstaller.__main__
 PyInstaller.__main__.run([
     "main.py",
     "--name=KotobaTray",
-    "--onedir",
+    "--onefile",
     "--windowed",
     "--noconfirm",
     "--icon=tray-icon.ico",
