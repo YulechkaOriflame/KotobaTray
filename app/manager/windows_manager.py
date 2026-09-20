@@ -1,5 +1,6 @@
-from app.models.window.base_window import BaseWindow
 from app.models.options.windows_action import TrayAction
+from app.models.window.base_window import BaseWindow
+
 
 class WindowsManager:
     def __init__(self, menu, options):

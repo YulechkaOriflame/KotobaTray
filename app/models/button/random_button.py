@@ -5,13 +5,15 @@ from app.models.button.sound_button import SoundButton
 from app.utils.random import RandomOrder
 from entity.word_entry import WordEntry
 
+
 class RandomButton(QPushButton):
-    def __init__(self,
-                 window: QWidget,
-                 labels: list[QLabel],
-                 loader: LoadFileButton,
-                 sound: SoundButton
-                 ):
+    def __init__(
+        self,
+        window: QWidget,
+        labels: list[QLabel],
+        loader: LoadFileButton,
+        sound: SoundButton,
+    ):
         super().__init__("Next")
         self.setStyleSheet(self._style())
         self._window_state(window, labels)

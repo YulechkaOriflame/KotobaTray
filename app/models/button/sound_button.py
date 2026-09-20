@@ -10,6 +10,7 @@ from PySide6.QtWidgets import QPushButton
 
 from app.utils.catch_error_from_thread import error_call
 
+
 class SoundButton(QPushButton):
     def __init__(self):
         super().__init__("🔊")
@@ -38,8 +39,10 @@ class SoundButton(QPushButton):
             }
         """
 
+
 def speak(text: str, lang: str):
     threading.Thread(target=_play_worker, args=(text, lang), daemon=True).start()
+
 
 def _play_worker(text: str, lang: str):
     try:
@@ -48,6 +51,7 @@ def _play_worker(text: str, lang: str):
         _cleanup(tmp_path)
     except Exception as e:
         error_call.error_signal.emit(str(e))
+
 
 def _play_audio(file_path: str):
     _init_mixer()
@@ -60,6 +64,7 @@ def _play_audio(file_path: str):
     pygame.mixer.music.stop()
     pygame.mixer.music.unload()
 
+
 def _cleanup(file_path: str):
     time.sleep(0.1)
     try:
@@ -67,11 +72,13 @@ def _cleanup(file_path: str):
     except OSError as e:
         error_call.error_signal.emit(str(e))
 
+
 def _generate_audio(text: str, lang: str = "ja") -> str:
     with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
         tmp_path = tmp_file.name
     gTTS(text=text, lang=lang).save(tmp_path)
     return tmp_path
+
 
 def _init_mixer():
     if not pygame.mixer.get_init():

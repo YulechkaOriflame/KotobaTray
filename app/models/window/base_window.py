@@ -3,6 +3,7 @@ from abc import abstractmethod
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QWidget
 
+
 class BaseWindow(QWidget):
     def __init__(self):
         super().__init__()
@@ -13,7 +14,9 @@ class BaseWindow(QWidget):
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton:
-            self._mouse_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            self._mouse_pos = (
+                event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            )
             event.accept()
 
     def mouseMoveEvent(self, event):

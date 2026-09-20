@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QSystemTrayIcon
 
 from app.manager.clipboard_watcher import ClipboardWatcher
 
+
 class ClearClipboardOption(QAction):
     def __init__(self, watcher: ClipboardWatcher, parent: QSystemTrayIcon):
         super().__init__("Clear clipboard", parent=parent)

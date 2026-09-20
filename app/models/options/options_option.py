@@ -1,6 +1,7 @@
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import QSystemTrayIcon, QWidget
 
+
 class OptionsOption(QAction):
     def __init__(self, window: QWidget, parent: QSystemTrayIcon):
         super().__init__("Options", parent)

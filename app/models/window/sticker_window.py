@@ -8,6 +8,7 @@ from app.models.button.sound_button import SoundButton
 from app.models.window.base_window import BaseWindow
 from app.utils.label_builder import get_jp_label, get_label
 
+
 class StickerWindow(BaseWindow):
     def __init__(self):
         super().__init__()

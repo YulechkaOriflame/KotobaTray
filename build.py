@@ -1,14 +1,16 @@
 import PyInstaller.__main__
 import unidic_lite
 
-PyInstaller.__main__.run([
-    "main.py",
-    "--name=KotobaTray",
-    "--onefile",
-    "--windowed",
-    "--noconfirm",
-    "--icon=tray-icon.ico",
-    "--add-data=NotoSerifJP-VariableFont_wght.ttf;.",
-    "--add-data=tray-icon.ico;.",
-    f"--add-data={unidic_lite.DICDIR};unidic_lite/dicdir", # it should be found by mecab in fugashi
-])
+PyInstaller.__main__.run(
+    [
+        "main.py",
+        "--name=KotobaTray",
+        "--onefile",
+        "--windowed",
+        "--noconfirm",
+        "--icon=tray-icon.ico",
+        "--add-data=NotoSerifJP-VariableFont_wght.ttf;.",
+        "--add-data=tray-icon.ico;.",
+        f"--add-data={unidic_lite.DICDIR};unidic_lite/dicdir",  # it should be found by mecab in fugashi
+    ]
+)

@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QSystemTrayIcon
 
 from app.manager.clipboard_watcher import ClipboardWatcher
 
+
 class PauseOption(QAction):
     def __init__(self, watcher: ClipboardWatcher, parent: QSystemTrayIcon):
         super().__init__("Pause clipboard reading", parent=parent, checkable=True)

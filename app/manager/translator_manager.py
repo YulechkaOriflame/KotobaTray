@@ -1,7 +1,8 @@
 from PySide6.QtCore import QObject, QTimer, Signal
 
-from app.models.window.options_window import Options
 from app.manager.translator_thread import TranslatorThread
+from app.models.window.options_window import Options
+
 
 class TranslatorManager(QObject):
     translated = Signal(str)

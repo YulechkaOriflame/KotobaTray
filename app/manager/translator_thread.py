@@ -3,6 +3,7 @@ from PySide6.QtCore import QThread, Signal
 from app.models.window.options_window import Options
 from app.utils.translate_and_format import get_translation_to_target
 
+
 class TranslatorThread(QThread):
     translated = Signal(str)
 

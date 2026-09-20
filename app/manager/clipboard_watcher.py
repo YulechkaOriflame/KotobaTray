@@ -3,6 +3,7 @@ from typing import Callable, List
 from PySide6.QtCore import QObject, QTimer, Signal
 from PySide6.QtWidgets import QApplication
 
+
 class ClipboardWatcher(QObject):
     changed = Signal(str)
 
@@ -16,7 +17,9 @@ class ClipboardWatcher(QObject):
         self._timer = QTimer(self)
         self._timer.timeout.connect(self._check_clipboard)
 
-    def configure(self, callback: Callable[[str], None], parent: QObject) -> "ClipboardWatcher":
+    def configure(
+        self, callback: Callable[[str], None], parent: QObject
+    ) -> "ClipboardWatcher":
         self.setParent(parent)
         if callback not in self._callbacks:
             self._callbacks.append(callback)

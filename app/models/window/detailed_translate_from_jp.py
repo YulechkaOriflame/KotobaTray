@@ -2,18 +2,23 @@ from typing import List
 
 from PySide6.QtWidgets import QHBoxLayout, QLabel, QVBoxLayout
 
+from app.manager.clipboard_watcher import ClipboardWatcher
 from app.models.button.sound_button import SoundButton
 from app.models.window.base_window import BaseWindow
 from app.models.window.options_window import Options
-from app.manager.clipboard_watcher import ClipboardWatcher
 from app.utils.label_builder import adjust_size, get_jp_label, get_label
-from app.utils.translate_and_format import get_romaji, get_translation_from_source, get_underlined_text
+from app.utils.translate_and_format import (
+    get_romaji,
+    get_translation_from_source,
+    get_underlined_text,
+)
 
 LABEL_SCHEMAS_JAPANESE = [
     (get_jp_label, 24),  # kanji
     (get_label, 20),  # romaji
     (get_label, 20),  # translation
 ]
+
 
 class DetailedTranslateFromJp(BaseWindow):
     def __init__(self, options: Options, clipboard_watcher: ClipboardWatcher):

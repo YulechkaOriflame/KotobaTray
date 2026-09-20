@@ -2,9 +2,11 @@ import os
 import subprocess
 import sys
 
+
 def run(cmd):
     print(f"Running: {cmd}")
     subprocess.check_call(cmd, shell=True)
+
 
 venv_dir = ".venv"
 if not os.path.exists(venv_dir):

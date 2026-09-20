@@ -1,6 +1,7 @@
 from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import QApplication, QTextEdit
 
+
 class CopyHelper:
     @staticmethod
     def enable_copy(field: QTextEdit):

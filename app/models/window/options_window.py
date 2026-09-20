@@ -2,7 +2,23 @@ from PySide6.QtWidgets import QComboBox, QLabel, QVBoxLayout, QWidget
 
 from app.models.button.apply_settings_button import ApplySettingButton
 
-LANGUAGES = ["ru", "en", "ja", "fr", "de", "es", "ar", "pl", "da", "sw", "zh", "ko", "it", "auto"]
+LANGUAGES = [
+    "ru",
+    "en",
+    "ja",
+    "fr",
+    "de",
+    "es",
+    "ar",
+    "pl",
+    "da",
+    "sw",
+    "zh",
+    "ko",
+    "it",
+    "auto",
+]
+
 
 class Options(QWidget):
     def __init__(self):
@@ -21,10 +37,14 @@ class Options(QWidget):
 
     def _build_layout(self):
         self.layout = QVBoxLayout(self)
-        source_widget, self.source_box = self._box_lang("Source language", self._source_lang)
+        source_widget, self.source_box = self._box_lang(
+            "Source language", self._source_lang
+        )
         self.layout.addWidget(source_widget)
 
-        target_widget, self.target_box = self._box_lang("Target language", self._target_lang)
+        target_widget, self.target_box = self._box_lang(
+            "Target language", self._target_lang
+        )
         self.layout.addWidget(target_widget)
 
         self._add_apply_button()

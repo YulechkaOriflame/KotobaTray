@@ -1,6 +1,7 @@
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QPushButton
 
+
 class ApplySettingButton(QPushButton):
     applied = Signal()
 

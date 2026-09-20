@@ -3,10 +3,10 @@ from typing import List
 from PySide6.QtGui import QShowEvent
 from PySide6.QtWidgets import QHBoxLayout, QLabel, QVBoxLayout
 
+from app.manager.clipboard_watcher import ClipboardWatcher
 from app.models.button.sound_button import SoundButton
 from app.models.window.base_window import BaseWindow
 from app.models.window.options_window import Options
-from app.manager.clipboard_watcher import ClipboardWatcher
 from app.utils.label_builder import adjust_size, get_label
 from app.utils.translate_and_format import get_translation_from_source
 
@@ -14,6 +14,7 @@ LABEL_SCHEMAS = [
     (get_label, 24),  # original
     (get_label, 24),  # translation
 ]
+
 
 class SimpleTranslate(BaseWindow):
     def __init__(self, options: Options, clipboard_watcher: ClipboardWatcher):

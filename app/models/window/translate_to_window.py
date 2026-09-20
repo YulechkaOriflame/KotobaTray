@@ -2,10 +2,11 @@
 from PySide6.QtGui import QShowEvent
 from PySide6.QtWidgets import QTextEdit, QVBoxLayout
 
+from app.manager.translator_manager import TranslatorManager
 from app.models.window.base_window import BaseWindow
 from app.models.window.options_window import Options
 from app.utils.copy_helper import CopyHelper
-from app.manager.translator_manager import TranslatorManager
+
 
 class TranslateToWindow(BaseWindow):
     def __init__(self, options: Options):
